@@ -39,7 +39,7 @@ Before you begin, ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone GhostPass
 cd cloud_storage
 ```
 
