@@ -32,7 +32,7 @@ A robust, secure password manager built with the **MERN Stack** (MongoDB, Expres
 
 Ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v16+)
-- [MongoDB](https://www.mongodb.com/try/download/community) (Local or Atlas instance)
+- [MongoDB](https://www.mongodb.com/try/download/community) (Local) OR [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (Cloud Account)
 
 ## ⚙️ Installation
 
@@ -59,12 +59,20 @@ npm install
 Create a `.env` file in the `backend/` directory:
 
 ```env
+# For Local MongoDB
 MONGO_URI=mongodb://localhost:27017/ghostpass
+
+# OR For MongoDB Atlas (Cloud)
+# MONGO_URI=mongodb+srv://<username>:<password>@cluster0.exmpl.mongodb.net/ghostpass?retryWrites=true&w=majority
+
 JWT_SECRET=your_super_secret_jwt_key
 ENCRYPTION_KEY=your_password_encryption_key
 PORT=3000
 ```
-> **Note**: `ENCRYPTION_KEY` is used to encrypt user passwords before storing them in the database. Keep it safe!
+> **Important**:
+> - Replace `<username>` and `<password>` with your actual Atlas credentials.
+> - If your password contains special characters (e.g., `@`), URL-encode them (e.g., `%40`).
+> - `ENCRYPTION_KEY` is used to encrypt user passwords. Keep it safe!
 
 ## 🏃 Usage
 
