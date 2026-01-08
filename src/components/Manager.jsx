@@ -2,11 +2,11 @@ import React from 'react'
 
 function Manager() {
     return (
-        // Background-only element should not intercept pointer events
-        <div className="absolute inset-0 -z-10 pointer-events-none">
-    {/* I replaced #63e with #22c55e (a brighter standard green) */}
-    <div className="h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#22c55e_100%)]"></div>
-</div>
+        // Background gradient - fixed to cover entire viewport
+        <div className="fixed inset-0 w-screen h-screen -z-10 pointer-events-none">
+            {/* Subtle linear gradient matching body background */}
+            <div className="w-full h-full bg-gradient-to-br from-navy-950 to-navy-900"></div>
+        </div>
     )
 }
 

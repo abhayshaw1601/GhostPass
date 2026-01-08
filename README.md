@@ -1,191 +1,130 @@
 # 🔐 GhostPass - Secure Password Manager
 
-A modern, secure password manager built with React and MongoDB that helps you manage your credentials with ease and style.
+A robust, secure password manager built with the **MERN Stack** (MongoDB, Express, React, Node.js) that helps you manage your digital credentials with military-grade encryption and a modern, distraction-free **Dark Mode UI**.
 
-![GhostPass Banner](https://img.shields.io/badge/GhostPass-Secure%20Password%20Manager-green?style=for-the-badge)
+![GhostPass Banner](https://img.shields.io/badge/GhostPass-v1.0-emerald?style=for-the-badge&logo=security)
 
-## Features
+## 🚀 Features
 
-- **Secure Storage** - All passwords stored in MongoDB with secure handling
-- **Modern UI** - Beautiful, responsive design with dark mode aesthetics
-- **Mobile Friendly** - Fully responsive across all devices
-- **Fast & Efficient** - Built with Vite for lightning-fast performance
-- **Real-time Updates** - Instant sync with backend database
-- **One-click Copy** - Quick clipboard access for credentials
-- **Easy Management** - Edit and delete passwords with simple controls
-- **Clean Interface** - Distraction-free, developer-focused design
+- **🛡️ Secure Storage**: End-to-end encryption for stored passwords using AES.
+- **🔐 JWT Authentication**: Secure, HttpOnly cookie-based authentication flow (Login/Signup).
+- **⚡ Modern Tech**: Built with React 19, Vite, and TailwindCSS 4.
+- **📱 Responsive**: Glassmorphism UI that adapts seamlessly to all devices.
+- **📋 One-Click Actions**: Instant copy-to-clipboard for usernames and passwords.
+- **👁️ Privacy First**: Toggle password visibility and secure logout functionality.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
-- **React 19** - Modern UI library
-- **Vite** - Next-generation frontend tooling
-- **TailwindCSS 4** - Utility-first CSS framework
-- **React Router** - Client-side routing
+- **React 19**: Latest standard for building user interfaces.
+- **Vite 7**: Lightning-fast build tool and dev server.
+- **TailwindCSS 4**: Utility-first CSS framework for custom design systems.
+- **React Router 7**: Client-side routing for seamless navigation.
 
 ### Backend
-- **Node.js & Express** - RESTful API server
-- **MongoDB** - NoSQL database for password storage
-- **CORS** - Cross-origin resource sharing enabled
+- **Node.js & Express**: Scalable RESTful API server.
+- **MongoDB & Mongoose**: NoSQL database for flexible data storage.
+- **JWT (JSON Web Tokens)**: Secure stateless authentication.
+- **Bcrypt**: Industrial-strength password hashing.
+- **Crypto-JS**: AES encryption for storing sensitive vault data.
 
-## Prerequisites
+## 📦 Prerequisites
 
-Before you begin, ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v16 or higher)
-- [MongoDB](https://www.mongodb.com/try/download/community) (running locally or remote instance)
-- npm (comes with Node.js)
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v16+)
+- [MongoDB](https://www.mongodb.com/try/download/community) (Local or Atlas instance)
 
-## Installation
+## ⚙️ Installation
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/abhayshaw1601/GhostPass
 cd cloud_storage
 ```
 
-### 2. Install Frontend Dependencies
+### 2. Install Dependencies
+
+**Frontend:**
 ```bash
 npm install
 ```
 
-### 3. Install Backend Dependencies
+**Backend:**
 ```bash
 cd backend
 npm install
-cd ..
 ```
 
-### 4. Configure Environment Variables
-Create a `.env` file in the `backend` directory:
+### 3. Configure Environment Variables
+Create a `.env` file in the `backend/` directory:
+
 ```env
-MONGO_URI=mongodb://localhost:27017
+MONGO_URI=mongodb://localhost:27017/ghostpass
+JWT_SECRET=your_super_secret_jwt_key
+ENCRYPTION_KEY=your_password_encryption_key
+PORT=3000
 ```
+> **Note**: `ENCRYPTION_KEY` is used to encrypt user passwords before storing them in the database. Keep it safe!
 
-Replace with your MongoDB connection string if using a remote database.
+## 🏃 Usage
 
-## Usage
-
-### Start the Backend Server
-Open a terminal and run:
+### Start Backend Server
 ```bash
 cd backend
 node server.js
 ```
-The server will start on `http://localhost:3000`
+Server runs on: `http://localhost:3000`
 
-### Start the Frontend Development Server
-Open another terminal and run:
+### Start Frontend Client
+Open a new terminal in the root folder:
 ```bash
 npm run dev
 ```
-The application will be available at `http://localhost:5173`
+Client runs on: `http://localhost:5173`
 
-### Build for Production
-```bash
-npm run build
-npm run preview
-```
+## 📡 API Endpoints
 
-## Project Structure
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :---: |
+| **POST** | `/create` | Register a new user account | ❌ |
+| **POST** | `/login` | Authenticate user & set cookie | ❌ |
+| **GET** | `/logout` | Clear auth cookie | ✅ |
+| **GET** | `/` | Retrieve all encrypted passwords | ✅ |
+| **POST** | `/` | Encrypt & save a new password | ✅ |
+| **DELETE** | `/` | Delete a specific credential | ✅ |
+
+## 📂 Project Structure
 
 ```
 cloud_storage/
 ├── backend/
-│   ├── server.js          # Express server with API routes
-│   ├── .env              # Environment variables
-│   └── package.json      # Backend dependencies
+│   ├── models/            # Mongoose Schemas (User, Password)
+│   ├── server.js          # REST API & Authentication Logic
+│   └── .env               # Secrets (Not committed)
 ├── src/
 │   ├── components/
-│   │   ├── Home.jsx      # Main password manager interface
-│   │   ├── Navbar.jsx    # Navigation component
-│   │   ├── About.jsx     # About page
-│   │   ├── Contact.jsx   # Contact form
-│   │   └── Manager.jsx   # Background gradient component
-│   ├── App.jsx           # Main app with routing
-│   ├── main.jsx          # Application entry point
-│   └── index.css         # Global styles & Tailwind imports
-├── public/               # Static assets
-├── index.html           # HTML template
-├── vite.config.js       # Vite configuration
-└── package.json         # Frontend dependencies
+│   │   ├── Home.jsx       # Main Vault Dashboard
+│   │   ├── Login.jsx      # Authentication Page
+│   │   ├── Signup.jsx     # Registration Page
+│   │   ├── Navbar.jsx     # Responsive Navigation
+│   │   ├── About/Contact  # Static Info Pages
+│   │   └── Manager.jsx    # UI Background Layout
+│   ├── index.css          # Tailwind & Custom Design System
+│   └── main.jsx           # Entry Point
+└── README.md              # Documentation
 ```
 
-## API Endpoints
+## 🤝 Contributing
 
-### Get All Passwords
-```
-GET http://localhost:3000/
-```
-Returns an array of all stored passwords.
+Contributions are welcome!
+1. Fork the repo.
+2. Create feature branch (`git checkout -b feature/NewFeature`).
+3. Commit changes (`git commit -m 'Add NewFeature'`).
+4. Push to branch (`git push origin feature/NewFeature`).
+5. Open a Pull Request.
 
-### Save New Password
-```
-POST http://localhost:3000/
-Content-Type: application/json
-
-{
-  "site": "https://example.com",
-  "username": "user@example.com",
-  "password": "securepassword123",
-  "id": "unique-uuid"
-}
-```
-
-### Delete Password
-```
-DELETE http://localhost:3000/
-Content-Type: application/json
-
-{
-  "id": "password-unique-id"
-}
-```
-
-## Features in Detail
-
-### Password Management
-- Add new passwords with website URL, username, and password
-- View all saved passwords in a clean table format
-- Edit existing passwords with one click
-- Delete passwords with confirmation
-- Show/hide password visibility
-
-### Security
-- Passwords stored in MongoDB database
-- Unique UUID for each password entry
-- Secure API communication between frontend and backend
-
-### User Experience
-- Toast notifications for all actions
-- Copy-to-clipboard functionality for all fields
-- Responsive design for mobile, tablet, and desktop
-- Smooth animations and transitions
-- Dark mode with green accent theme
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
+## 📄 License
 This project is open source and available under the [MIT License](LICENSE).
 
-## Acknowledgments
-
-- Built with ❤️ using React and TailwindCSS
-- Icons by [Lord Icon](https://lordicon.com/)
-- Inspired by modern password management solutions
-
-## Contact
-
-For questions or support, visit the [Contact Page](http://localhost:5173/contact) in the application.
-
 ---
-
-**Security Note**: This is a demonstration project. For production use, implement additional security measures such as encryption at rest, user authentication, and secure password hashing.
+*Built with ❤️ for privacy enthusiasts.*
