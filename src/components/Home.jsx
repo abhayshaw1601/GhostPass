@@ -83,10 +83,21 @@ function Home() {
         }
     }
 
-    const editPassword = (id) => {
+    const editPassword = async (id) => {
         console.log("Password is editing : ", id);
         setform(passwordArr.find(item => item.id === id))
         setPasswordArr(passwordArr.filter(item => item.id !== id))
+        try {
+            let req = await fetch(`http://localhost:3000/`, {
+                method: "DELETE",
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                }, body: JSON.stringify({ id })
+            });
+        } catch (error) {
+            console.error("Error deleting password during edit:", error);
+        }
     }
 
     const savePassword = async () => {
